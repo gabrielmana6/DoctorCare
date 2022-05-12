@@ -1,6 +1,7 @@
 /*=== GERAL ====================================*/
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -18,10 +19,18 @@
     --nav-height: 7.2rem;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-family: 'DM Sans';
     font-size: 1.6rem;
+    
     text-align: center;
+
+    overflow: overlay;
 }
 
 .wrapper {
@@ -37,7 +46,7 @@ header {
 
 header::before {
     content: '';
-    width: 100vw;
+    width: 100%;
     height: calc(108rem + var(--nav-height));
     background-color: var(--brand-light);
     display: block;
@@ -152,6 +161,10 @@ nav .wrapper {
     justify-content: space-between;
 }
 
+ul {
+    list-style: none;
+}
+
 nav.scroll {
     background: var(--primary-color);
     width: 100vw;
@@ -161,6 +174,106 @@ nav.scroll svg:nth-child(1) path{
     fill: white;
 }
 
-nav.scroll svg:nth-child(2) path{
+nav.scroll button path{
     stroke: white;
+}
+
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/*=== MENU-EXPANDED ====================================*/
+body.menu-expanded {
+    overflow: hidden;
+}
+
+body.menu-expanded > :not(nav) {
+    display: none;
+}
+
+.menu,
+.close-menu,
+bodu.menu-expanded .open-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+
+    width: 100vw;
+    height: 100vh;
+
+    padding-top: var(--nav-height);
+}
+
+body.menu-expanded nav {
+    position: relative;
+}
+
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu .button {
+    background: white;
+    border-radius: 4rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    color: var(--primary-color);
+
+    display: inline-block;
+    padding: 16px 32px;
+
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+}
+
+.social-links {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 3.2rem;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded nav button {
+    position: relative;
+    z-index: 100;
+}
+
+body.menu-expanded .logo path {
+    fill: white;
+}
+
+body.menu-expanded button path {
+    fill: white;
 }
